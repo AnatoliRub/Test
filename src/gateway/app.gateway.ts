@@ -85,9 +85,14 @@ export enum Events {
 }
 
 
+
 const WSPORT = 80;
 @Injectable()
-@WebSocketGateway(WSPORT, { cors: true })
+@WebSocketGateway(WSPORT, { cors: {
+  origin: '*',
+  methods: ["GET", "POST"],
+  credentials: true,
+} })
 export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
