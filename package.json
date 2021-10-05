@@ -20,9 +20,6 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
-  "engines": {
-    "node": "14.17.0"
-  },
   "dependencies": {
     "@nestjs/common": "^8.0.0",
     "@nestjs/config": "^1.0.1",
@@ -31,6 +28,8 @@
     "@nestjs/platform-express": "^8.0.0",
     "@nestjs/platform-socket.io": "^8.0.6",
     "@nestjs/websockets": "^8.0.6",
+    "class-transformer": "^0.4.0",
+    "class-validator": "^0.13.1",
     "cross-env": "^7.0.3",
     "mongoose": "^5.13.9",
     "reflect-metadata": "^0.1.13",
