@@ -87,7 +87,6 @@ export enum Events {
 
 const options = {
   cors: {
-    origin: ["carabaz.herokuapp.com"],
     methods: ["GET", "POST"],
     credentials: true
   }
