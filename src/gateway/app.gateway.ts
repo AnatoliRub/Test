@@ -86,7 +86,7 @@ export enum Events {
 
 
 
-const WSPORT = 80;
+const WSPORT = 443;
 @Injectable()
 @WebSocketGateway(WSPORT, { cors: true} )
 export class AppGateway
