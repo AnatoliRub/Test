@@ -1,1 +1,1 @@
-web: npm run start:prod
+web: "./node_modules/@nestjs/cli/bin/nest.js start"
