@@ -119,6 +119,7 @@ export class AppGateway
   }
   afterInit() {
     this.logger.log('Initialized');
+    this.logger.log(this.wss.engine);
   }
 
   @SubscribeMessage(Events.FinishGame)
