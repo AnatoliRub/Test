@@ -84,9 +84,17 @@ export enum Events {
   FinishGameMsg = 'finishGameMsg',
 }
 
+
+const options = {
+  cors: {
+    origin: ["carabaz.herokuapp.com"],
+    methods: ["GET", "POST"],
+    credentials: true
+  }
+}
 const WSPORT = 5005;
 @Injectable()
-@WebSocketGateway(WSPORT, { cors: true })
+@WebSocketGateway(WSPORT, options)
 export class AppGateway
   implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect
 {
