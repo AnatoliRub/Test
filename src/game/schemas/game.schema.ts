@@ -16,12 +16,12 @@ export class Game {
 
   @Prop({
     default: {
-      isAsPlayer: true,
+      isAsPlayer: false,
       isChangeCard: false,
       isTimer: true,
-      scoreType: 'string',
-      shortScoreType: 'str',
-      roundTime: 888,
+      scoreType: 'story point',
+      shortScoreType: 'SP',
+      roundTime: 150000,
       cardValues: [{ key: 'unknown', value: 'cup' }],
     },
   })
