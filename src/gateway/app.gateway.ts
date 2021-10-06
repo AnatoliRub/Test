@@ -154,7 +154,7 @@ export class AppGateway
   afterInit() {
     this.logger.log('Initialized');
   }
-/*
+
   @SubscribeMessage(Events.DeleteIssueVotesByIssueId)
   async handleDeleteIssueVotesByIssueId(
     client: Socket,
@@ -167,7 +167,7 @@ export class AppGateway
     };
     this.wss.emit(Events.DeleteIssueVotesByIssueIdMsg, answer);
   }
-*/
+
   @SubscribeMessage(Events.StartVotingByPlayer)
   async handleStartVotingByPlayer(
     client: Socket,
@@ -190,7 +190,7 @@ export class AppGateway
       this.wss.emit(Events.VotingCannotStart, 'Voting cannot start');
     }
   }
-/*
+
   @SubscribeMessage(Events.FinishVotingByPlayer)
   async handleFinishVotingByPlayer(
     client: Socket,
@@ -259,7 +259,7 @@ export class AppGateway
       }
     }
   }
-*/
+
   @SubscribeMessage(Events.MsgToServer)
   async handleSendMsg(client: Socket, message: ChatMessageType): Promise<void> {
     const user = await this.userService.getOne(message.userId);

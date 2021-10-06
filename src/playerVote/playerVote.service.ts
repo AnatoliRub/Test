@@ -31,13 +31,29 @@ export class PlayerVoteService {
   async getByGameId(gameId: string): Promise<PlayerVote[]> {
     return this.voteModel.find({ gameId: gameId }).exec();
   }
-  async getByGameIdAndPlayerId(
+  async getByTargetId(targetId: string): Promise<PlayerVote[]> {
+    return this.voteModel.find({ targetId: targetId }).exec();
+  }
+  async getByGameIdAndTargetId(
     gameId: string,
     targetId: string,
   ): Promise<PlayerVote[]> {
     try {
       return await this.voteModel
         .find({ gameId: gameId, targetId: targetId })
+        .exec();
+    } catch {
+      throw new NotFoundException("Vote doesn't exist!");
+    }
+  }
+
+  async getByGameIdAndPlayerId(
+    gameId: string,
+    playerId: string,
+  ): Promise<PlayerVote[]> {
+    try {
+      return await this.voteModel
+        .find({ gameId: gameId, playerId: playerId })
         .exec();
     } catch {
       throw new NotFoundException("Vote doesn't exist!");
@@ -73,6 +89,25 @@ export class PlayerVoteService {
       throw new NotFoundException("Vote doesn't exist!");
     }
   }
+
+  async deletePlayerVotesByTargetId(targetId: string): Promise<
+    {
+      ok?: number;
+      n?: number;
+    } & {
+      deletedCount?: number;
+    }
+  > {
+    try {
+      const deletedPlayersVotesByTargetId = await this.voteModel.deleteMany({
+        targetId: targetId,
+      });
+      return deletedPlayersVotesByTargetId;
+    } catch {
+      throw new NotFoundException("Votes doesn't exist!");
+    }
+  }
+
   async deletePlayerVotesByUserId(userId: string): Promise<
     {
       ok?: number;
