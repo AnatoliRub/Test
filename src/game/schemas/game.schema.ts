@@ -8,10 +8,10 @@ export type GameDocument = Game & Document;
 
 @Schema()
 export class Game {
-  @Prop({ required: true })
+  @Prop({ default: 'https://aea-react-final-task.netlify.app/' })
   url: string;
 
-  @Prop({ required: true })
+  @Prop({ default: 'Spring' })
   title: string;
 
   @Prop({

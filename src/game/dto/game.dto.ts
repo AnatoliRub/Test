@@ -9,7 +9,7 @@ export class GameSettings {
 }
 
 export class GameDto {
-  url: string;
-  title: string;
+  url?: string;
+  title?: string;
   gameSettings?: GameSettings;
 }

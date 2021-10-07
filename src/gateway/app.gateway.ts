@@ -134,7 +134,7 @@ export class AppGateway
     @Inject(forwardRef(() => PlayerVoteService))
     private playerVoteService: PlayerVoteService,
     @Inject(forwardRef(() => IssueVoteService))
-    private issueVoteService: IssueVoteService
+    private issueVoteService: IssueVoteService,
   ) {}
 
   private logger: Logger = new Logger('AppGateway');
