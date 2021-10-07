@@ -84,6 +84,7 @@ export class PlayerVoteService {
     try {
       const newVote = new this.voteModel(voteDto);
       this.gateway.handleAddVoteByPlayer(newVote);
+      this.gateway.handleFinishVotingByPlayer({gameId: newVote.gameId, targetId: newVote.targetId});
       return await newVote.save();
     } catch {
       throw new NotFoundException("Vote doesn't exist!");

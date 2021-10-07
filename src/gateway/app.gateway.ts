@@ -193,7 +193,6 @@ export class AppGateway
 
   @SubscribeMessage(Events.FinishVotingByPlayer)
   async handleFinishVotingByPlayer(
-    client: Socket,
     message: FinishVotingByPlayer,
   ): Promise<void> {
     const votings = (await this.userService.getByGameId(message.gameId)).filter(
