@@ -431,7 +431,6 @@ export class AppGateway
     const settings = await this.gameService.getOne(message.gameId);
     const isCreatorAsPlayer = settings.gameSettings.isAsPlayer;
 
-    const isTimer = settings.gameSettings.isTimer;
     const issues = await this.issueVoteService.getByGameIdAndIssueId(message.gameId, message._id);
 
     let votings: UserDocument[] = [];
@@ -445,7 +444,10 @@ export class AppGateway
         (it) => it.role === 'user',
       );
     }
-
+    console.log(`${votings.length} ayayayayaya`);
+    this.logger.log(`${votings.length} ayayayayaya`);
+    console.log(`${votings.length} bybybybybyb`);
+    this.logger.log(`${votings.length} bybybybybyb`);
 
     if (votings.length === issues.length) {
       this.logger.log('ayayayayaya');
