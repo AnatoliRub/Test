@@ -444,6 +444,7 @@ export class AppGateway
         (it) => it.role === 'user',
       );
     }
+    
     console.log(`${votings.length} ayayayayaya`);
     this.logger.log(`${votings.length} ayayayayaya`);
     console.log(`${votings.length} bybybybybyb`);
