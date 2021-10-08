@@ -431,7 +431,7 @@ export class AppGateway
     const settings = await this.gameService.getOne(message.gameId);
     const isCreatorAsPlayer = settings.gameSettings.isAsPlayer;
 
-    const issues = await this.issueVoteService.getByGameIdAndIssueId(message.gameId, message._id);
+    const issues = await this.issueVoteService.getByGameIdAndIssueId(message.gameId, message.issueId);
 
     let votings: UserDocument[] = [];
 
