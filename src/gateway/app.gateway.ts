@@ -189,6 +189,7 @@ export class AppGateway
     if (users > 2) {
       this.wss.emit(Events.StartVotingByPlayerMsg, answer);
     } else {
+      this.playerVoteService.create({gameId: message.gameId, playerId: message.playerId, targetId: message.targetId, vote: true});
       this.wss.emit(Events.VotingCannotStart, 'Voting cannot start');
     }
   }
@@ -238,14 +239,14 @@ export class AppGateway
         return vote === false ? ++acc : acc;
       }, 0);
 
-      this.logger.log(`Votings ${votings.length}}`);
+      this.logger.log(`Votings ${votings.length - 1}}`);
       this.logger.log(`Votings ${votes.length}}`);
       this.logger.log(`DecisionRight ${decisionRight}`);
       this.logger.log(`DecisionWrong ${decisionWrong }`);
 
-      this.logger.log(`Delete ${decisionRight > Math.floor(votings.length / 2)}`);
-      this.logger.log(`NoDelete ${decisionWrong >= Math.floor(votings.length / 2)}`);
-      if (decisionRight > Math.floor(votings.length / 2)) {
+      this.logger.log(`Delete ${decisionRight > Math.floor((votings.length  - 1) / 2)}`);
+      this.logger.log(`NoDelete ${decisionWrong >= Math.floor((votings.length  - 1) / 2)}`);
+      if (decisionRight > Math.floor((votings.length - 1) / 2)) {
         await this.userService.delete(message.targetId);
         await this.playerVoteService.deletePlayerVotesByUserId(
           message.targetId,
@@ -256,7 +257,7 @@ export class AppGateway
         );
         this.wss.emit(Events.FinishVotingByPlayerMsg, answer);
       }
-      if (decisionWrong >= Math.floor(votings.length / 2)) {
+      if (decisionWrong >= Math.floor((votings.length - 1 )/ 2)) {
         await this.playerVoteService.deletePlayerVotesByUserId(
           message.targetId,
         );
