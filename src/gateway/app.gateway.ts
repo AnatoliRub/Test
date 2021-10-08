@@ -243,6 +243,8 @@ export class AppGateway
       this.logger.log(`DecisionRight ${decisionRight}`);
       this.logger.log(`DecisionWrong ${decisionWrong }`);
 
+      this.logger.log(`Delete ${decisionRight > Math.floor(votings.length / 2)}`);
+      this.logger.log(`NoDelete ${decisionWrong >= Math.floor(votings.length / 2)}`);
       if (decisionRight > Math.floor(votings.length / 2)) {
         await this.userService.delete(message.targetId);
         await this.playerVoteService.deletePlayerVotesByUserId(
