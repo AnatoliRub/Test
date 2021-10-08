@@ -188,8 +188,8 @@ export class AppGateway
     const users = start.filter((it) => it.role === 'user').length;
     if (users > 2) {
       this.wss.emit(Events.StartVotingByPlayerMsg, answer);
-    } else {
       this.playerVoteService.create({gameId: message.gameId, playerId: message.playerId, targetId: message.targetId, vote: true});
+    } else {
       this.wss.emit(Events.VotingCannotStart, 'Voting cannot start');
     }
   }
