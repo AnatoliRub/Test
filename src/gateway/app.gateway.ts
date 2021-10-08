@@ -419,12 +419,40 @@ export class AppGateway
   }
 
   @SubscribeMessage(Events.AddVoteByIssue)
-  handleAddVoteByIssue(message: IssueVoteDocument): void {
+  async handleAddVoteByIssue(message: IssueVoteDocument): Promise<void> {
+
     const answer: IPayload<IssueVoteDocument> = {
       event: Events.AddVoteByIssue,
       payload: message,
     };
+
     this.wss.emit(Events.AddVoteByIssueMsg, answer);
+
+    const settings = await this.gameService.getOne(message.gameId);
+    const isCreatorAsPlayer = settings.gameSettings.isAsPlayer;
+
+    const isTimer = settings.gameSettings.isTimer;
+    const issues = await this.issueVoteService.getByGameIdAndIssueId(message.gameId, message._id);
+
+    let votings: UserDocument[] = [];
+
+    if (isCreatorAsPlayer) {
+      votings = (await this.userService.getByGameId(message.gameId)).filter(
+        (it) => it.role !== 'observer',
+      );
+    } else {
+      votings = (await this.userService.getByGameId(message.gameId)).filter(
+        (it) => it.role === 'user',
+      );
+    }
+
+
+    if (!isTimer) {
+      if (votings.length === issues.length) {
+        this.wss.emit(Events.EndRound, `end-${message.gameId}`);
+      }
+    }
+
   }
 
   @SubscribeMessage(Events.DeleteVoteByIssue)
