@@ -453,7 +453,7 @@ export class AppGateway
     if (votings.length === issues.length) {
       this.logger.log('ayayayayaya');
       console.log('ayayayayaya');
-      this.wss.emit(Events.EndRound, `end-${message.gameId}`);
+      this.wss.emit('serverEndRoundMsg', `end-${message.gameId}`);
     }
 
   }
