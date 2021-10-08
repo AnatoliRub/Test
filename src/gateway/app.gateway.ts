@@ -160,11 +160,13 @@ export class AppGateway
     client: Socket,
     message: string,
   ): Promise<void> {
+    this.logger.log(message);
     await this.issueVoteService.deleteIssueVotesByIssueId(message);
     const answer: IPayload<string> = {
       event: Events.DeleteIssueVotesByIssueId,
       payload: message,
     };
+    this.logger.log(answer);
     this.wss.emit(Events.DeleteIssueVotesByIssueIdMsg, answer);
   }
 
@@ -452,7 +454,6 @@ export class AppGateway
 
     if (votings.length === issues.length) {
       this.logger.log('ayayayayaya');
-      console.log('ayayayayaya');
       this.wss.emit('serverEndRoundMsg', `end-${message.gameId}`);
     }
 
