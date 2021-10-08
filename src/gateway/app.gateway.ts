@@ -238,6 +238,11 @@ export class AppGateway
         return vote === false ? ++acc : acc;
       }, 0);
 
+      this.logger.log(`Votings ${votings.length}}`);
+      this.logger.log(`Votings ${votes.length}}`);
+      this.logger.log(`DecisionRight ${decisionRight}`);
+      this.logger.log(`DecisionWrong ${decisionWrong }`);
+
       if (decisionRight > Math.floor(votings.length / 2)) {
         await this.userService.delete(message.targetId);
         await this.playerVoteService.deletePlayerVotesByUserId(
