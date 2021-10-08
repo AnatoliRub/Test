@@ -447,12 +447,10 @@ export class AppGateway
     }
 
 
-    if (!isTimer) {
-      if (votings.length === issues.length) {
-        this.logger.log('ayayayayaya');
-        console.log('ayayayayaya');
-        this.wss.emit(Events.EndRound, `end-${message.gameId}`);
-      }
+    if (votings.length === issues.length) {
+      this.logger.log('ayayayayaya');
+      console.log('ayayayayaya');
+      this.wss.emit(Events.EndRound, `end-${message.gameId}`);
     }
 
   }
