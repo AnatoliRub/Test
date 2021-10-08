@@ -444,11 +444,11 @@ export class AppGateway
         (it) => it.role === 'user',
       );
     }
-    
-    console.log(`${votings.length} ayayayayaya`);
-    this.logger.log(`${votings.length} ayayayayaya`);
-    console.log(`${votings.length} bybybybybyb`);
-    this.logger.log(`${votings.length} bybybybybyb`);
+
+    console.log(`${votings.length} голосующих`);
+    this.logger.log(`${votings.length} голосующих`);
+    console.log(`${issues.length} голосов`);
+    this.logger.log(`${issues.length} голосов`);
 
     if (votings.length === issues.length) {
       this.logger.log('ayayayayaya');
